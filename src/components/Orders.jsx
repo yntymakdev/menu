@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const Orders = () => {
-  return <div></div>;
+const Orders = ({ readOrders, orders }) => {
+  useEffect(() => {
+    readOrders();
+  }, []);
+  return (
+    <div>
+      <div className="Order"></div>
+    </div>
+  );
 };
 
 export default Orders;

@@ -7,18 +7,27 @@ import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
-const Menu = ({ readProduct, data, deleteProduct }) => {
+import { Link, useNavigate } from "react-router-dom";
+const Menu = ({
+  readProduct,
+  data,
+  deleteProduct,
+  editProduct,
+  addtoOrders,
+}) => {
   useEffect(() => {
     readProduct();
   }, []);
+
+  const navigate = useNavigate();
   return (
     <section id="munu">
       <div className="container">
         <div class="munu">
           <h2>MENU </h2>
           <div className="cards">
-            {data.map((el) => (
-              <Card sx={{ width: "260px", height: "270px", padding: "10px" }}>
+            {data.map((el, index) => (
+              <Card sx={{ width: "26  0px", height: "270px", padding: "10px" }}>
                 <CardMedia
                   component="img"
                   alt="green iguana"
@@ -40,12 +49,14 @@ const Menu = ({ readProduct, data, deleteProduct }) => {
                     justifyContent: "space-around",
                   }}
                 >
-                  <button>
+                  <button onClick={() => addtoOrders(el.id)}>
                     <AddIcon />
                   </button>
-                  <button>
-                    <EditIcon />
-                  </button>
+                  <Link to={`/edit/${el.id}`}>
+                    <button onClick={() => editProduct(index)}>
+                      <EditIcon />
+                    </button>
+                  </Link>
                   <button onClick={() => deleteProduct(el.id)}>
                     <DeleteIcon />
                   </button>
